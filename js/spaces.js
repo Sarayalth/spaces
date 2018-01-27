@@ -400,7 +400,12 @@
                 type: 'application/json',
             });
             const blobUrl = URL.createObjectURL(blob);
-            const filename = 'spaces-backup.json';
+            const today = new Date();
+            const dateAry = [ today.getFullYear() , today.getMonth()+1, today.getDate(),
+                            today.getHours(), today.getMinutes(), today.getSeconds() ]
+                          .map( function(n) { return n<10 ? "0"+n : n; } );
+            const filename = "spaces-backup." + dateAry.slice(0,3).join("-") + "."
+                       + dateAry.slice(3,6).join("-") + ".json";
             const link = document.createElement('a');
             link.setAttribute('href', blobUrl);
             link.setAttribute('download', filename);
